@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/uw-labs/straw"
+	"github.com/anicoll/straw"
 )
 
 type MessageSinkAutoFlush struct {
@@ -32,7 +32,6 @@ const (
 )
 
 func NewMessageAutoFlushSink(streamstore straw.StreamStore, config MessageSinkAutoFlushConfig) (*MessageSinkAutoFlush, error) {
-
 	if config.MaxUnflushedTime == 0 {
 		config.MaxUnflushedTime = DefaultMaxUnflushedTime
 	}

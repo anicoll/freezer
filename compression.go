@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/uw-labs/straw"
+	"github.com/anicoll/straw"
 )
 
 type CompressionType int
