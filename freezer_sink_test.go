@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/anicoll/straw"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/uw-labs/straw"
 )
 
 func TestSinkCreatesNewDir(t *testing.T) {
@@ -25,6 +25,7 @@ func TestSinkCreatesNewDir(t *testing.T) {
 	assert.True(fi.IsDir())
 	assert.Equal("baz", fi.Name())
 }
+
 func TestMaxUnflushedTime(t *testing.T) {
 	assert := assert.New(t)
 	require := require.New(t)
@@ -48,6 +49,7 @@ func TestMaxUnflushedTime(t *testing.T) {
 	assert.Equal("00", fis[0].Name())
 	assert.Equal("01", fis[1].Name())
 }
+
 func TestMaxUnflushedMessages(t *testing.T) {
 	assert := assert.New(t)
 	require := require.New(t)

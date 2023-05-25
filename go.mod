@@ -1,16 +1,16 @@
-module github.com/uw-labs/freezer
+module github.com/anicoll/freezer
 
-go 1.18
+go 1.20
 
 require (
+	github.com/anicoll/straw v0.0.0-20230525021816-c9d5bf19fc68
 	github.com/golang/snappy v0.0.4
-	github.com/klauspost/compress v1.15.1
-	github.com/stretchr/testify v1.7.1
-	github.com/uw-labs/straw v0.0.0-20220413125153-9e7a44bbbfda
+	github.com/klauspost/compress v1.16.5
+	github.com/stretchr/testify v1.8.3
 )
 
 require (
-	github.com/davecgh/go-spew v1.1.0 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

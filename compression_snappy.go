@@ -4,8 +4,8 @@ import (
 	"io"
 	"os"
 
+	"github.com/anicoll/straw"
 	"github.com/golang/snappy"
-	"github.com/uw-labs/straw"
 )
 
 var _ straw.StreamStore = &snappyStreamStore{}

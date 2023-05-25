@@ -4,8 +4,8 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/anicoll/straw"
 	"github.com/stretchr/testify/assert"
-	"github.com/uw-labs/straw"
 )
 
 func TestSeqToPath(t *testing.T) {
@@ -23,7 +23,6 @@ func TestFindLatestEmpty(t *testing.T) {
 	latest, err := nextSequence(ss, "/foo/")
 	assert.NoError(err)
 	assert.Equal(0, latest)
-
 }
 
 func TestNotADir(t *testing.T) {
@@ -31,7 +30,7 @@ func TestNotADir(t *testing.T) {
 
 	ss, _ := straw.Open("mem://")
 
-	err := straw.MkdirAll(ss, seqToPath("/foo/", 0), 0777)
+	err := straw.MkdirAll(ss, seqToPath("/foo/", 0), 0o777)
 	assert.NoError(err)
 
 	wc, err := ss.CreateWriteCloser("/foo/00/bar")
@@ -54,7 +53,7 @@ func TestFindLatest(t *testing.T) {
 		path := seqToPath("/foo/", i)
 
 		dir := filepath.Dir(path)
-		straw.MkdirAll(ss, dir, 0755)
+		straw.MkdirAll(ss, dir, 0o755)
 
 		rc, err := ss.CreateWriteCloser(path)
 		if err != nil {
@@ -71,5 +70,4 @@ func TestFindLatest(t *testing.T) {
 	latest, err := nextSequence(ss, "/foo/")
 	assert.NoError(err)
 	assert.Equal(12345, latest)
-
 }

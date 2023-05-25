@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/uw-labs/straw"
+	"github.com/anicoll/straw"
 )
 
 func TestSimpleHappyPathRoundTrip(t *testing.T) {

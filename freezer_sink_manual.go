@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/uw-labs/straw"
+	"github.com/anicoll/straw"
 )
 
 type MessageSink struct {
@@ -29,10 +29,9 @@ type MessageSinkConfig struct {
 }
 
 func NewMessageSink(streamstore straw.StreamStore, config MessageSinkConfig) (*MessageSink, error) {
-
 	_, err := streamstore.Stat(config.Path)
 	if os.IsNotExist(err) {
-		if err := straw.MkdirAll(streamstore, config.Path, 0755); err != nil {
+		if err := straw.MkdirAll(streamstore, config.Path, 0o755); err != nil {
 			return nil, err
 		}
 		_, err = streamstore.Stat(config.Path)
@@ -88,7 +87,7 @@ func (mq *MessageSink) loop(nextSeq int) error {
 			binary.LittleEndian.PutUint32(lenBytes[:], uint32(len(r.m)))
 			if wc == nil {
 				nextFile := seqToPath(mq.path, nextSeq)
-				if err := straw.MkdirAll(mq.streamstore, filepath.Dir(nextFile), 0755); err != nil {
+				if err := straw.MkdirAll(mq.streamstore, filepath.Dir(nextFile), 0o755); err != nil {
 					return err
 				}
 				wc, err = mq.streamstore.CreateWriteCloser(nextFile)

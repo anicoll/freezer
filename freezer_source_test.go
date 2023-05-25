@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/anicoll/straw"
 	"github.com/stretchr/testify/assert"
-	"github.com/uw-labs/straw"
 )
 
 var (
@@ -92,11 +92,9 @@ func TestAwaitInputFile(t *testing.T) {
 	if err := <-consumeErrors; err != nil && err != ctx.Err() {
 		t.Errorf("error during consume %v", err)
 	}
-
 }
 
 func TestSourceContextCancelDuringRead(t *testing.T) {
-
 	assert := assert.New(t)
 
 	ss, _ := straw.Open("mem://")
@@ -139,7 +137,6 @@ func TestSourceContextCancelDuringRead(t *testing.T) {
 	if err := <-consumeErr; err != nil {
 		t.Error(err)
 	}
-
 }
 
 func length(l int) []byte {
@@ -183,25 +180,27 @@ func (fs mockStrawStore) OpenReadCloser(name string) (straw.StrawReader, error) 
 func (fs mockStrawStore) CreateWriteCloser(name string) (straw.StrawWriter, error) {
 	return nil, nil
 }
+
 func (fs mockStrawStore) Lstat(path string) (os.FileInfo, error) {
 	return nil, nil
-
 }
+
 func (fs mockStrawStore) Stat(path string) (os.FileInfo, error) {
 	return nil, nil
-
 }
+
 func (fs mockStrawStore) Readdir(path string) ([]os.FileInfo, error) {
 	return nil, nil
-
 }
+
 func (fs mockStrawStore) Mkdir(path string, mode os.FileMode) error {
 	return nil
-
 }
+
 func (fs mockStrawStore) Remove(path string) error {
 	return nil
 }
+
 func (fs mockStrawStore) Close() error {
 	return nil
 }

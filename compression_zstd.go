@@ -4,8 +4,8 @@ import (
 	"io"
 	"os"
 
+	"github.com/anicoll/straw"
 	"github.com/klauspost/compress/zstd"
-	"github.com/uw-labs/straw"
 )
 
 var _ straw.StreamStore = &zstdStreamStore{}
@@ -43,7 +43,6 @@ func (fs *zstdStreamStore) OpenReadCloser(name string) (straw.StrawReader, error
 		return nil, err
 	}
 	return &zstdReadCloser{r, rc}, nil
-
 }
 
 func (fs *zstdStreamStore) Mkdir(name string, mode os.FileMode) error {

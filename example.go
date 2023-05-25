@@ -7,11 +7,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/uw-labs/straw"
+	"github.com/anicoll/straw"
 )
 
 func main() {
-
 	produce()
 
 	ss, err := straw.Open("file:///")
@@ -32,7 +31,6 @@ func main() {
 	if err := cons.ConsumeMessages(ctx, handler); err != nil {
 		log.Fatal(err)
 	}
-
 }
 
 type MyMessage struct {
@@ -45,7 +43,6 @@ func (m MyMessage) Marshal() ([]byte, error) {
 }
 
 func produce() {
-
 	ss, err := straw.Open("file:///")
 	if err != nil {
 		log.Fatal(err)
@@ -62,7 +59,6 @@ func produce() {
 		CustomerID: "customer-01",
 		Message:    fmt.Sprintf("hello. it is currently %v", time.Now()),
 	}.Marshal()
-
 	if err != nil {
 		panic(err)
 	}

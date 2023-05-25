@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/uw-labs/straw"
+	"github.com/anicoll/straw"
 )
 
 type ConsumerMessageHandler func([]byte) error
@@ -26,7 +26,6 @@ type MessageSourceConfig struct {
 }
 
 func NewMessageSource(streamstore straw.StreamStore, config MessageSourceConfig) *MessageSource {
-
 	switch config.CompressionType {
 	case CompressionTypeNone:
 	case CompressionTypeSnappy:
@@ -47,7 +46,6 @@ func NewMessageSource(streamstore straw.StreamStore, config MessageSourceConfig)
 }
 
 func (mq *MessageSource) ConsumeMessages(ctx context.Context, handler ConsumerMessageHandler) error {
-
 	var err error
 	var rc io.ReadCloser
 
